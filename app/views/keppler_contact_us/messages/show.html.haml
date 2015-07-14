@@ -1,0 +1,29 @@
+= title "Messages | #{@message.id}"
+.wrapper
+	.wrapper-body.container
+		.actions
+			- if can? :delete, KepplerContactUs::Message
+				= link_to message_path(@message), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => "Eliminar", method: :delete, data: { confirm: 'Are you sure?' } do
+					= material_icon.md_18.delete.css_class("md-dark")
+			= link_to messages_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => "Volver" do
+				= material_icon.md_18.arrow_back.css_class("md-dark") 
+		.card			
+			%ul.list
+				%li.list-row
+					.display-label= t("model.#{controller_name.singularize}.attributes.id")
+					.display-value.fs-body-1.tc-black-2= @message.id.to_s.humanize
+				%li.list-row
+					.display-label= t("model.#{controller_name.singularize}.attributes.name")
+					.display-value.fs-body-1.tc-black-2= @message.name.to_s.humanize
+				%li.list-row
+					.display-label= t("model.#{controller_name.singularize}.attributes.subject")
+					.display-value.fs-body-1.tc-black-2= @message.subject.to_s.humanize
+				%li.list-row
+					.display-label= t("model.#{controller_name.singularize}.attributes.email")
+					.display-value.fs-body-1.tc-black-2= @message.email.to_s.humanize
+				%li.list-row
+					.display-label= t("model.#{controller_name.singularize}.attributes.content")
+					.display-value.fs-body-1.tc-black-2= @message.content.to_s.humanize
+				%li.list-row
+					.display-label= t("model.#{controller_name.singularize}.attributes.read")
+					.display-value.fs-body-1.tc-black-2= @message.read.to_s.humanize

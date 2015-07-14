@@ -1,0 +1,18 @@
+= title("Messages - Listado")
+.listing.col.l9.m12.s12
+	= entries(@total, @objects)
+	%table.bordered
+		%tbody
+			- @objects.each do |message|
+				= render 'listing', message: message
+			- if @objects.size.zero?
+				%tr
+					%td{colspan: "4"}
+						%center
+							No se han encontrado messages.
+	= paginate @objects, window: 1
+
+.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
+	= render "description"
+
+

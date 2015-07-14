@@ -1,0 +1,24 @@
+.listing-show-header
+	.actions
+		
+	%h5
+		= material_icon.md_24.email.css_class("md-light") 
+		= t("model.singular.#{controller_name.singularize}")
+.listing-show-body.card
+	%ul.list
+		%li.list-row
+			.display-label= t("model.#{controller_name.singularize}.attributes.name")
+			.display-value= @message.name
+		%li.list-row
+			.display-label= t("model.#{controller_name.singularize}.attributes.subject")
+			.display-value= @message.subject
+		%li.list-row
+			.display-label= t("model.#{controller_name.singularize}.attributes.email")
+			.display-value= @message.email
+		%hr
+		.display-value{align: "justify"}= @message.content
+	
+
+:javascript
+	$(".modal-trigger").leanModal();
+	$('.tooltipped').tooltip({delay: 1});
