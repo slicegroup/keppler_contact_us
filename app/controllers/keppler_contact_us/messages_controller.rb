@@ -5,7 +5,7 @@ module KepplerContactUs
   class MessagesController < ApplicationController  
     before_filter :authenticate_user!
     layout 'admin/application', except: [:new]
-    load_and_authorize_resource
+    load_and_authorize_resource, except: [:create]
     before_action :set_message, only: [:show, :edit, :update, :destroy]
 
     # GET /messages
@@ -47,7 +47,7 @@ module KepplerContactUs
       redirect_to messages_url, notice: 'Message was successfully destroyed.'
     end
 
-    def destroy_multiple
+    def destroy_mutiple
       Message.destroy redefine_ids(params[:multiple_ids])
       redirect_to messages_path(page: @current_page, search: @query), notice: "Usuarios eliminados satisfactoriamente" 
     end
