@@ -4,6 +4,7 @@ module KepplerContactUs
   class Message < ActiveRecord::Base
     include Elasticsearch::Model
     include Elasticsearch::Model::Callbacks
+    validates_presence_of :name, :email
 
     def self.searching(query)
       if query

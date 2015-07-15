@@ -1,19 +1,24 @@
 .contact-form
+	= render "layouts/frontend/messages"
 	= simple_form_for @message, :url => "/admin/messages", :method => :post do |f|
 		.row
 			.col-lg-12
-				= f.input :name, label: false, input_html: {class: "form-control", placeholder: "Nombre"}
+				= f.input :name, label: false, wrapper: :bootstrap, input_html: {class: "form-control", placeholder: "Nombre", required: "required"}
 
 			.col-lg-12
-				= f.input :email, label: false, input_html: {class: "form-control", placeholder: "Email"}
+				= f.input :email, as: :email, label: false, input_html: {class: "form-control", placeholder: "Email", required: "required"}
 
 			.col-lg-12
 				= f.input :subject, label: false, input_html: {class: "form-control", placeholder: "Asunto"}
 
 			.col-lg-12
 				= f.input :content, as: :text, label: false, input_html: {class: "form-control", placeholder: "Mensaje..."}
+		.row
+			.col-lg-12
+				.pull-right
+					= raw recaptcha_tags :display => { :theme => 'custom', lang: 'es' }, ajax: true
 
-		.form-actions.right
-			= f.button :submit, "Enviar", class: "btn btn-primary"
+			.col-lg-12.form-actions.right
+				= f.button :submit, "Enviar", class: "btn btn-primary pull-right"
 
 		
