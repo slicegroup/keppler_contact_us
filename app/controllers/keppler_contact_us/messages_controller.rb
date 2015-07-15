@@ -3,9 +3,9 @@ require_dependency "keppler_contact_us/application_controller"
 
 module KepplerContactUs
   class MessagesController < ApplicationController  
-    before_filter :authenticate_user!
+    before_filter :authenticate_user!, except: [:create]
     layout 'admin/application', except: [:new]
-    load_and_authorize_resource, except: [:create]
+    load_and_authorize_resource except: [:create]
     before_action :set_message, only: [:show, :edit, :update, :destroy]
 
     # GET /messages
