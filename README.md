@@ -72,7 +72,8 @@ rake contact_us:copy_initializer
 ```
 
 Nota: Puede obtener las llaves de Recaptcha desde esta dirección [Recaptcha Keys](https://www.google.com/recaptcha/admin)
-## Render
+
+## Formulario de contactos
 Para usar el formulario de contacto colocar el la accion del controlador lo siguiente.
 
 ```ruby
