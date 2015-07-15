@@ -26,7 +26,7 @@ gem "recaptcha"
 La siguiente linea habilitará las rutas del engine, debe ser colocada en el archivo `config/initializers/routes.rb`
 
 ```ruby
-mount KepplerContectUs::Engine, :at => '', as: 'messages'
+mount KepplerContactUs::Engine, :at => '/', as: 'messages'
 ```
 
 Para agregar `config/initializers/keppler_contact_us.rb` y asi estabelecer los datos de configuración debe ejecutar
