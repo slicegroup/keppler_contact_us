@@ -10,9 +10,6 @@
 		.card			
 			%ul.list
 				%li.list-row
-					.display-label= t("model.#{controller_name.singularize}.attributes.id")
-					.display-value.fs-body-1.tc-black-2= @message.id.to_s.humanize
-				%li.list-row
 					.display-label= t("model.#{controller_name.singularize}.attributes.name")
 					.display-value.fs-body-1.tc-black-2= @message.name.to_s.humanize
 				%li.list-row
@@ -21,9 +18,5 @@
 				%li.list-row
 					.display-label= t("model.#{controller_name.singularize}.attributes.email")
 					.display-value.fs-body-1.tc-black-2= @message.email.to_s.humanize
-				%li.list-row
-					.display-label= t("model.#{controller_name.singularize}.attributes.content")
-					.display-value.fs-body-1.tc-black-2= @message.content.to_s.humanize
-				%li.list-row
-					.display-label= t("model.#{controller_name.singularize}.attributes.read")
-					.display-value.fs-body-1.tc-black-2= @message.read.to_s.humanize
+				%hr
+				.display-value.fs-body-1.tc-black-2= @message.content.to_s.humanize

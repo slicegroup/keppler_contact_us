@@ -4,7 +4,7 @@ require_dependency "keppler_contact_us/application_controller"
 module KepplerContactUs
   class MessagesController < ApplicationController  
     before_filter :authenticate_user!
-    layout 'admin/application'
+    layout 'admin/application', except: [:new]
     load_and_authorize_resource
     before_action :set_message, only: [:show, :edit, :update, :destroy]
 
@@ -17,23 +17,16 @@ module KepplerContactUs
 
     # GET /messages/1
     def show
-    end
-
-    # GET /messages/new
-    def new
-      @message = Message.new
-    end
-
-    # GET /messages/1/edit
-    def edit
+      message = Message.find_by(id: params[:id])
+      message.update(read: true)
     end
 
     # POST /messages
     def create
       @message = Message.new(message_params)
-
+      ContactMailer.contact(message_params).deliver
       if @message.save
-        redirect_to @message, notice: 'Message was successfully created.'
+        redirect_to KepplerContactUs.redirection, notice: 'Message was successfully created.'
       else
         render :new
       end

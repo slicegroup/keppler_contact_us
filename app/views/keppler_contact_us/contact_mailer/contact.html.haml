@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %center
+      %h1= "Contacto "
+    %p
+      %strong Nombre:
+      = @client[:name]
+    %p
+      %strong Email:
+      = @client[:email]
+    %p
+      %strong Asunto:
+      = @client[:subject]
+    %p
+      %strong Mensaje:
+      = @client[:content]

@@ -1,17 +1,19 @@
-.wrapper
-	.wrapper-body.container
-		.actions
-			= link_to messages_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => "Volver" do
-				= material_icon.md_18.arrow_back.css_class("md-dark")
-		.wrapper-inputs
-			.card
-				= simple_form_for @message do |f|
-					.row
-						= f.input :name
-						= f.input :subject
-						= f.input :email
-						= f.input :content, input_html: {class: "materialize-textarea"}
-						= f.input :read, as: :checkbox_material
+.contact-form
+	= simple_form_for @message, :url => "/admin/messages", :method => :post do |f|
+		.row
+			.col-lg-12
+				= f.input :name, label: false, input_html: {class: "form-control", placeholder: "Nombre"}
 
-					.form-actions.right
-						= f.button :submit, "Guardar", class: "btn"
+			.col-lg-12
+				= f.input :email, label: false, input_html: {class: "form-control", placeholder: "Email"}
+
+			.col-lg-12
+				= f.input :subject, label: false, input_html: {class: "form-control", placeholder: "Asunto"}
+
+			.col-lg-12
+				= f.input :content, as: :text, label: false, input_html: {class: "form-control", placeholder: "Mensaje..."}
+
+		.form-actions.right
+			= f.button :submit, "Enviar", class: "btn btn-primary"
+
+		

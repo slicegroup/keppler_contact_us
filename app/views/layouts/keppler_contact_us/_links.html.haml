@@ -1,0 +1,7 @@
+%li
+	= link_to "/admin/messages", class: "collapsible-header #{'current' if controller_name == 'messages' }" do
+		= material_icon.md_18.email
+		Mensajes 
+		%span.badge#badge-message 
+			- if KepplerContactUs::Message.where({read: nil}).count > 0
+				= KepplerContactUs::Message.where({read: nil}).count
