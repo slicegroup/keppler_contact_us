@@ -15,7 +15,7 @@ module KepplerContactUs
     end
 
     def self.query(query)
-      { query: { multi_match:  { query: query, fields: [:name, :subject, :create_at, :email] , operator: :and }  }, sort: { id: "desc" }, size: self.count }
+      { query: { multi_match:  { query: query, fields: [:name, :subject, :create_at, :email, :read] , operator: :and }  }, sort: { id: "desc" }, size: self.count }
     end
 
     #armar indexado de elasticserch
@@ -26,7 +26,7 @@ module KepplerContactUs
         subject:  self.subject,
         email:  self.email,
         content:  self.content,
-        read:  self.read ? "leidos": "--leidos",
+        read:  self.read ? "leidos" : "--leidos",
         created_at:  self.created_at.to_s,
       }.as_json
     end
