@@ -1,0 +1,13 @@
+es:
+  model:
+    plural:
+      categories: Categorías
+      messages: Mensajes
+    singular:
+      contact_us: Contacto
+      message: Mensaje
+    message:
+      attributes:
+        name: Nombre
+        subject: Asunto
+        email: Correo Electronico
