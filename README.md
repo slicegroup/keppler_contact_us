@@ -55,6 +55,12 @@ rake keppler_contact_us:install:migrations
 ```
 ```
 rake db:migrate
+
+```
+Asignale permisos al modulo en el archivo app/models/ability.rb.
+
+```ruby
+  can :manage, KepplerContactUs::Message
 ```
 
 Ubicarse en la ruta del proyecto desde la terminal y ejecutar
