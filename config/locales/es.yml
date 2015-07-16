@@ -7,7 +7,12 @@ es:
       contact_us: Contacto
       message: Mensaje
     message:
+      description:
+        title: Módulo de mensajes 
+        body: Aquí podrá gestionar todos los mensajes enviados desde el formulario de contactos, en ella podras leer, buscar y eliminar mensajes de tus visitas, ademas de poder observar los mensajes leidos y no leidos en la bandeja de entrada.
       attributes:
         name: Nombre
         subject: Asunto
         email: Correo Electronico
+      actions:
+        delete: "¿Estas seguro de querer eliminar?"
