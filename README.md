@@ -59,7 +59,7 @@ rake db:migrate
 ```
 Asignale permisos al modulo en el archivo app/models/ability.rb.
 
-```
+```ruby
   can :manage, <model_name>
 ```
 
