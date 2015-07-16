@@ -47,7 +47,7 @@ module KepplerContactUs
       redirect_to messages_url, notice: 'Message was successfully destroyed.'
     end
 
-    def destroy_mutiple
+    def destroy_multiple
       Message.destroy redefine_ids(params[:multiple_ids])
       redirect_to messages_path(page: @current_page, search: @query), notice: "Usuarios eliminados satisfactoriamente" 
     end
