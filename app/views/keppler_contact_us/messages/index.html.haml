@@ -8,8 +8,9 @@
 			- if @objects.size.zero?
 				%tr
 					%td{colspan: "4"}
-						%center
-							No se han encontrado messages.
+						%center							
+							= t("model.#{controller_name.singularize}.no_found.text")
+
 	= paginate @objects, window: 1
 
 .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
