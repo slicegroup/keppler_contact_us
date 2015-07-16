@@ -22,11 +22,11 @@ module KepplerContactUs
     def as_indexed_json(options={})
       {
         id: self.id.to_s,
-        name:  self.name.to_s,
-        subject:  self.subject.to_s,
-        email:  self.email.to_s,
-        content:  self.content.to_s,
-        read:  self.read.to_s,
+        name:  self.name,
+        subject:  self.subject,
+        email:  self.email,
+        content:  self.content,
+        read:  self.read ? "leidos": "--leidos",
         created_at:  self.created_at.to_s,
       }.as_json
     end
