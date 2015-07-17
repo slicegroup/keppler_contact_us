@@ -1,4 +1,6 @@
 es:
+  header:
+    messages: Mensajes
   model:
     plural:
       categories: Categorías

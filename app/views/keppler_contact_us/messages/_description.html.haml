@@ -3,8 +3,9 @@
 		= material_icon.md_24.email.css_class("md-light") 
 		= t("model.singular.#{controller_name.singularize}")
 .listing-show-body.card
-	%h5 
-		= t("model.#{controller_name.singularize}.description.title")
-	%p 
-		= t("model.#{controller_name.singularize}.description.body")
+	.list
+		%h5 
+			= t("model.#{controller_name.singularize}.description.title")
+		%p 
+			= t("model.#{controller_name.singularize}.description.body")
 	
