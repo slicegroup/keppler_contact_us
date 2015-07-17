@@ -40,12 +40,12 @@ Seguido a esto debemos cargar los assets de la gema, agregando lo siguiente
 en application.js
 
 ```
-//= require keppler_contact_us/application
+*= require keppler_contact_us/application
 ```
 añadir la siguiente linea a su manifesto javascript admin/application.css
 
 ```
-*= require inyx_catalog_rails/application
+//= require keppler_contact_us/application
 ```
 
 Luego importar migraciones y crear las tablas de contactos desde la consola
