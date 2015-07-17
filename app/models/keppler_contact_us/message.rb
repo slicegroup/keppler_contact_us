@@ -5,6 +5,10 @@ module KepplerContactUs
     include Elasticsearch::Model
     include Elasticsearch::Model::Callbacks
     validates_presence_of :name, :email
+    
+    after_commit on: [:update] do
+      puts __elasticsearch__.index_document
+    end
 
     def self.searching(query)
       if query
