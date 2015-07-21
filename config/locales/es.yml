@@ -1,6 +1,6 @@
 es:
   header:
-    messages: Mensajes
+    keppler_contact_us/messages: Mensajes
   model:
     plural:
       categories: Categorías
