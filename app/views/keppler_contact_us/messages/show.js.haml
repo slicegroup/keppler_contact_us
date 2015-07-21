@@ -8,3 +8,4 @@ $("#row-#{@message.id}").addClass("active")
 $('#read-status-#{@message.id}').html("<i class='mi md-18  md-dark'>done</i>");
 $scope = angular.element($(".listing-show")).scope()
 $scope.compiledHTML($(".listing-show"))
+$(".listing-show-body").trigger("click");
