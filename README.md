@@ -37,15 +37,10 @@ rake contact_us:copy_initializer
 
 Seguido a esto debemos cargar los assets de la gema, agregando lo siguiente
 
-en application.js
+en application.coffee
 
 ```
-*= require keppler_contact_us/application
-```
-añadir la siguiente linea a su manifesto javascript admin/application.css
-
-```
-//= require keppler_contact_us/application
+#= require keppler_contact_us/application
 ```
 
 Luego importar migraciones y crear las tablas de contactos desde la consola
