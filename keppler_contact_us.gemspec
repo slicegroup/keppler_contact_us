@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = KepplerContactUs::VERSION
   s.authors     = [""]
   s.email       = [""]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of KepplerContactUs."
-  s.description = "TODO: Description of KepplerContactUs."
+  s.homepage    = "https://github.com/inyxtech/keppler_contact_us.git"
+  s.summary     = "Summary of KepplerContactUs."
+  s.description = "ContactUs of KepplerContactUs."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
