@@ -69,7 +69,20 @@ Asignale permisos al modulo en el archivo app/models/ability.rb.
 Para agregar `config/initializers/contact_us.rb` y asi estabelecer los datos de configuración debe ejecutar
 
 ```ruby
-rake contact_us:copy_initializer
+KepplerContactUs.setup do |config|
+	config.mailer_to = <mailer_to>
+	config.mailer_from = <mailer_from>
+	config.name_web = <name_>
+	#Route redirection after send
+	config.redirection = "/contact_us"
+
+
+	# Agregar keys de google recaptcha
+	Recaptcha.configure do |config|
+	  config.public_key  = "public_key"
+	  config.private_key = "private_key"
+	end
+end
 ```
 
 Nota: Puede obtener las llaves de Recaptcha desde esta dirección [Recaptcha Keys](https://www.google.com/recaptcha/admin)
