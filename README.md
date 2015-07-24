@@ -66,7 +66,7 @@ Asignale permisos al modulo en el archivo app/models/ability.rb.
 
 ## Configuración
 
-Para agregar `config/initializers/contact_us.rb` y asi estabelecer los datos de configuración debe ejecutar
+En el archivo `config/initializers/contact_us.rb` se puede estabelecer los datos de configuración.
 
 ```ruby
 KepplerContactUs.setup do |config|
