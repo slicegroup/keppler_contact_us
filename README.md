@@ -23,6 +23,12 @@ gem 'keppler_contact_us', git: "https://github.com/inyxtech/keppler_contact_us.g
 gem "recaptcha"
 ```
 
+Ubicarse en la ruta del proyecto desde la terminal y ejecutar
+
+```ruby
+Bundle install
+```
+
 La siguiente linea habilitará las rutas del engine, debe ser colocada en el archivo `config/initializers/routes.rb`
 
 ```ruby
@@ -56,12 +62,6 @@ Asignale permisos al modulo en el archivo app/models/ability.rb.
 
 ```ruby
   can :manage, KepplerContactUs::Message
-```
-
-Ubicarse en la ruta del proyecto desde la terminal y ejecutar
-
-```ruby
-Bundle install
 ```
 
 ## Configuración
