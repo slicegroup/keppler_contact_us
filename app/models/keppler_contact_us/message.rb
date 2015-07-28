@@ -30,7 +30,7 @@ module KepplerContactUs
         subject:  self.subject,
         email:  self.email,
         content:  self.content,
-        read:  self.read ? "leidos" : "--leidos",
+        read:  self.read ? "si--leidos" : "no--leidos",
         created_at:  self.created_at.to_s,
       }.as_json
     end
