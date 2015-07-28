@@ -7,7 +7,7 @@ module KepplerContactUs
     validates_presence_of :name, :email
     
     after_commit on: [:update] do
-      puts __elasticsearch__.index_document
+      __elasticsearch__.index_document
     end
 
     def self.searching(query)
