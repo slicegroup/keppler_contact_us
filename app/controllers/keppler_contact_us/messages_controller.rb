@@ -24,7 +24,7 @@ module KepplerContactUs
     # POST /messages
     def create
       @message = Message.new(message_params)
-      if verify_recaptcha(attribute: "contact", message: "Oh! It's error with reCAPTCHA!") and @message.save
+      if verify_recaptcha(model: @message, timeout: 10, message: "Oh! It's error with reCAPTCHA!") and @message.save
         ContactMailer.contact(message_params).deliver
         redirect_to KepplerContactUs.redirection, notice: 'Mensaje enviado exitosamente.'
       else
