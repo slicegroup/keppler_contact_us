@@ -18,7 +18,7 @@ module KepplerContactUs
     # GET /messages/1
     def show
       message = Message.find_by(id: params[:id])
-      message.update(read: true)
+      message.update(read: true) unless message.read
     end
 
     # POST /messages
@@ -44,12 +44,12 @@ module KepplerContactUs
     # DELETE /messages/1
     def destroy
       @message.destroy
-      redirect_to messages_url, notice: 'Message was successfully destroyed.'
+      redirect_to messages_url, notice: 'Mensaje eliminado satisfactoriamente.'
     end
 
     def destroy_multiple
       Message.destroy redefine_ids(params[:multiple_ids])
-      redirect_to messages_path(page: @current_page, search: @query), notice: "Usuarios eliminados satisfactoriamente" 
+      redirect_to messages_path(page: @current_page, search: @query), notice: "Mensajes eliminados satisfactoriamente" 
     end
 
     private
