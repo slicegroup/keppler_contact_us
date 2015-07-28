@@ -3,5 +3,5 @@
 		= material_icon.md_18.email
 		= t('model.plural.messages')
 		%span.badge#badge-message 
-			- if KepplerContactUs::Message.where({read: nil}).count > 0
+			- unless KepplerContactUs::Message.where({read: nil}).count.zero?
 				= KepplerContactUs::Message.where({read: nil}).count
