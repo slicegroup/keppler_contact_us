@@ -1,7 +1,8 @@
-%li
-	= link_to "/admin/messages", class: "collapsible-header #{'current' if controller_name == 'messages' }" do
-		= material_icon.md_18.email
-		= t('model.plural.messages')
-		%span.badge#badge-message 
-			- unless KepplerContactUs::Message.where({read: nil}).count.zero?
-				= KepplerContactUs::Message.where({read: nil}).count
+- if can? :index, KepplerContactUs::Message
+	%li
+		= link_to "/admin/messages", class: "collapsible-header #{'current' if controller_name == 'messages' }" do
+			= material_icon.md_18.email
+			= t('model.plural.messages')
+			%span.badge#badge-message 
+				- unless KepplerContactUs::Message.where({read: nil}).count.zero?
+					= KepplerContactUs::Message.where({read: nil}).count
