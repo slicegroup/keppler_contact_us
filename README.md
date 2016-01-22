@@ -19,7 +19,7 @@ Es un Engine que proporciona un formulario de contacto básico
 Añadir la siguiente linea a su Gemfile
 
 ```ruby
-gem 'keppler_contact_us', git: "https://github.com/inyxtech/keppler_contact_us.git", tag: "1.1.0"
+gem 'keppler_contact_us', git: "https://github.com/inyxtech/keppler_contact_us.git", tag: "1.0.0"
 gem "recaptcha", require: "recaptcha/rails"
 ```
 
@@ -29,7 +29,7 @@ Ubicarse en la ruta del proyecto desde la terminal y ejecutar
 Bundle install
 ```
 
-La siguiente linea habilitará las rutas del engine, debe ser colocada en el archivo `config/initializers/routes.rb`
+La siguiente linea habilitará las rutas del engine, debe ser colocada en el archivo `config/routes.rb`
 
 ```ruby
 mount KepplerContactUs::Engine, :at => '/', as: 'messages'
