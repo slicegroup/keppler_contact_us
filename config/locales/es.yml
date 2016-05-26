@@ -1,22 +1,21 @@
 es:
-  header:
-    keppler_contact_us/messages: Mensajes
-  model:
-    plural:
-      categories: Categorías
+  keppler:
+    menu:
       messages: Mensajes
-    singular:
-      contact_us: Contacto
-      message: Mensaje
-    message:
-      description:
-        title: Módulo de mensajes 
-        body: Aquí podrá gestionar todos los mensajes enviados desde el formulario de contactos, en ella podras leer, buscar y eliminar mensajes de tus visitas, ademas de poder observar los mensajes leidos y no leidos en la bandeja de entrada.
-      no_found: 
-        text: No se han encontrado mensajes.
-      attributes:
+    models:
+      singularize:
+        keppler_contact_us/message: 'Mensaje'
+      pluralize:
+        messages: 'Mensajes'
+    modules:
+      keppler_contact_us/messages: 'Mensajes'
+    messages:
+      sent_message: 'Mensaje enviado satisfactoriamente'
+      error_message: 'Error: Revise los campos del formulario.'
+  activerecord:
+    attributes:
+      keppler_contact_us/message:
         name: Nombre
         subject: Asunto
-        email: Correo Electronico
-      actions:
-        delete: "¿Estas seguro de querer eliminar?"
+        email: Email
+

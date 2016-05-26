@@ -1,0 +1,20 @@
+en:
+  keppler:
+    menu:
+      messages: Messages
+    models:
+      singularize:
+        keppler_contact_us/message: 'Message'
+      pluralize:
+        messages: 'Messages'
+    modules:
+      keppler_contact_us/messages: 'Messages'
+    messages:
+      sent_message: 'Message sent successfully.'
+      error_message: 'Error: Check the form fields.'
+  activerecord:
+    attributes:
+      keppler_contact_us/message:
+        name: Name
+        subject: Subject
+        email: Email

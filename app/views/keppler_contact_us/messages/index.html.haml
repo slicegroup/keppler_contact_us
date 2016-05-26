@@ -1,4 +1,5 @@
-= title("Messages - Listado")
+= title(t('keppler.titles.index', model: t("keppler.models.pluralize.messages")))
+
 .listing.col.l9.m12.s12
 	= entries(@total, @objects)
 	%table.bordered
@@ -8,12 +9,12 @@
 			- if @objects.size.zero?
 				%tr
 					%td{colspan: "4"}
-						%center							
-							= t("model.#{controller_name.singularize}.no_found.text")
+						%center
+							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.messages"))
 
 	= paginate @objects, window: 1
 
 .listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
-	= render "description"
+	= render 'description'
 
 
