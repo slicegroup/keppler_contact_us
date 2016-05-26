@@ -12,6 +12,8 @@ en:
     messages:
       sent_message: 'Message sent successfully.'
       error_message: 'Error: Check the form fields.'
+    actions:
+      send: Send
   activerecord:
     attributes:
       keppler_contact_us/message:

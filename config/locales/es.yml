@@ -12,6 +12,8 @@ es:
     messages:
       sent_message: 'Mensaje enviado satisfactoriamente'
       error_message: 'Error: Revise los campos del formulario.'
+    actions:
+      send: Enviar
   activerecord:
     attributes:
       keppler_contact_us/message:
