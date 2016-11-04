@@ -1,6 +1,5 @@
 module KepplerContactUs
   class Message < ActiveRecord::Base
-    include ElasticSearchable
     include ActivityHistory
     validates_presence_of :name, :email
 
@@ -23,6 +22,10 @@ module KepplerContactUs
         content:  self.content,
         created_at:  self.created_at.to_s,
       }.as_json
+    end
+
+    def self.search_field
+      :name_or_last_name_or_email_or_content_cont
     end
   end
 end

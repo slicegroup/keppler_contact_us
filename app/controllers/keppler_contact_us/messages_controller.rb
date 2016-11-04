@@ -11,12 +11,15 @@ module KepplerContactUs
 
     # GET /messages
     def index
-      messages = Message.searching(@query).all
+      @q = Message.ransack(params[:q])
+      messages = @q.result(distinct: true)
       @objects = messages.page(@current_page)
       @total = messages.size
 
-      if !@objects.first_page? and @objects.size.zero?
-        redirect_to messages_path(page: @current_page.to_i.pred, search: @query)
+      if !@objects.first_page? && @objects.size.zero?
+        redirect_to(
+          posts_path(page: @current_page.to_i.pred, search: @query)
+        )
       end
     end
 
