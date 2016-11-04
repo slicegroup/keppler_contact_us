@@ -25,7 +25,7 @@ module KepplerContactUs
     end
 
     def self.search_field
-      :name_or_last_name_or_email_or_content_cont
+      :name_or_subject_or_email_or_content_cont
     end
   end
 end
