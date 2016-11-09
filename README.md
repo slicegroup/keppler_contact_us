@@ -52,7 +52,7 @@ en application.coffee
 Luego importar migraciones y crear las tablas de contactos desde la consola
 
 ```
-rake keppler_contact_us:install:migrations 
+rake keppler_contact_us:install:migrations
 ```
 ```
 rake db:migrate
@@ -62,6 +62,29 @@ Asignale permisos al modulo en el archivo app/models/ability.rb.
 
 ```ruby
   can :manage, KepplerContactUs::Message
+```
+
+Para poder acceder al módulodesde el sidebar se debe agregar lo siguiente a `config/menu.yml`
+
+```
+  keppler_messages:
+    name: keppler messages
+    url_path: /admin/messages
+    icon: email
+    current: ['keppler_contact_us/messages']
+    model: KepplerContactUs::Message
+```
+
+## Formulario de contactos
+Para usar el formulario de contacto colocar el la accion del controlador lo siguiente.
+
+```ruby
+@message = KepplerContactUs::Message.new
+```
+luego usar el render en la vista donde necesites el formulario.
+
+```ruby
+= render "keppler_contact_us/messages/form"
 ```
 
 ## Configuración
@@ -87,17 +110,6 @@ end
 
 Nota: Puede obtener las llaves de Recaptcha desde esta dirección [Recaptcha Keys](https://www.google.com/recaptcha/admin)
 
-## Formulario de contactos
-Para usar el formulario de contacto colocar el la accion del controlador lo siguiente.
-
-```ruby
-@message = KepplerContactUs::Message.new
-```
-luego usar el render en la vista donde necesites el formulario.
-
-```ruby
-= render "keppler_contact_us/messages/form"
-```
 
 
 ## Vistas
