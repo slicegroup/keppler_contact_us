@@ -4,17 +4,21 @@ require_dependency "<%= namespaced_file_path %>/application_controller"
 
 <% end -%>
 <% module_namespacing do -%>
-class <%= controller_class_name %>Controller < ApplicationController  
+class <%= controller_class_name %>Controller < ApplicationController
   before_filter :authenticate_user!
-  layout 'admin/application'
+  layout 'admin/layouts/application'
   load_and_authorize_resource
   before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
 
   # GET <%= route_url %>
   def index
-    <%= plural_table_name %> = <%= class_name %>.searching(@query).all
-    @objects, @total = <%= plural_table_name %>.page(@current_page), <%= plural_table_name %>.size
-    redirect_to <%= plural_table_name %>_path(page: @current_page.to_i.pred, search: @query) if !@objects.first_page? and @objects.size.zero?
+    @q = <%= class_name %>.ransack(params[:q])
+    <%= plural_table_name %> = @q.result(distinct: true)
+    @objects = <%= plural_table_name %>.page(@current_page)
+    @total = <%= plural_table_name %>.size
+    if !@objects.first_page? && @objects.size.zero?
+      redirect_to <%= plural_table_name %>_path(page: @current_page.to_i.pred, search: @query)
+    end
   end
 
   # GET <%= route_url %>/1
@@ -58,7 +62,7 @@ class <%= controller_class_name %>Controller < ApplicationController
 
   def destroy_multiple
     <%= class_name %>.destroy redefine_ids(params[:multiple_ids])
-    redirect_to <%= plural_table_name %>_path(page: @current_page, search: @query), notice: "Usuarios eliminados satisfactoriamente" 
+    redirect_to <%= plural_table_name %>_path(page: @current_page, search: @query), notice: "Usuarios eliminados satisfactoriamente"
   end
 
   private

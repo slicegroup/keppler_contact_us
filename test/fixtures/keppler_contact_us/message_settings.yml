@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mailer_to: MyString
+  recaptcha_pv: MyString
+  recaptcha_pb: MyString
+
+two:
+  mailer_to: MyString
+  recaptcha_pv: MyString
+  recaptcha_pb: MyString

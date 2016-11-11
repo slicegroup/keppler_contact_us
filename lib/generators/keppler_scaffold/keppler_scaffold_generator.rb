@@ -8,7 +8,6 @@ module Rails
 
       class_option :stylesheets, type: :boolean, desc: "Generate Stylesheets"
       class_option :stylesheet_engine, desc: "Engine for Stylesheets"
-      #class_option :assets, type: :boolean
       class_option :resource_route, type: :boolean
 
       #def handle_skip
@@ -21,10 +20,20 @@ module Rails
 
       check_class_collision suffix: "Controller"
 
-      class_option :orm, banner: "NAME", type: :string, required: true,
-                         desc: "ORM to generate the controller for"
+      class_option(
+        :orm,
+        banner: 'NAME',
+        type: :string,
+        required: true,
+        desc: 'ORM to generate the controller for'
+      )
 
-      argument :attributes, type: :array, default: [], banner: "field:type field:type"
+      argument(
+        :attributes,
+        type: :array,
+        default: [],
+        banner: 'field:type field:type'
+      )
 
       def create_controller_files
         template "controller.rb", File.join('app/controllers', controller_class_path, "#{controller_file_name}_controller.rb")
@@ -34,7 +43,7 @@ module Rails
         template "model.rb", File.join('app/models', controller_class_path, "#{controller_file_name.singularize}.rb")
       end
 
-      def create_views_files        
+      def create_views_files
         template "_description.html.haml", File.join("app/views/keppler_contact_us/#{controller_file_name}",  "_description.html.haml")
         template "_index_show.html.haml", File.join("app/views/keppler_contact_us/#{controller_file_name}",  "_index_show.html.haml")
         template "_listing.html.haml", File.join("app/views/keppler_contact_us/#{controller_file_name}",  "_listing.html.haml")
@@ -58,7 +67,7 @@ module Rails
         invoke invoked, [ controller_name ]
       end
 
-      
+
     end
   end
 end
