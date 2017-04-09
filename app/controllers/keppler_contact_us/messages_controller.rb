@@ -36,6 +36,7 @@ module KepplerContactUs
         ContactMailer.contact(message_params).deliver_now
         redirect_to KepplerContactUs.redirection, notice: t('keppler.messages.sent_message')
       else
+        puts @message.errors.messages
         redirect_to KepplerContactUs.redirection, alert: t('keppler.messages.error_message')
       end
     end

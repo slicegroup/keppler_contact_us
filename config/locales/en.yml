@@ -20,3 +20,6 @@ en:
         name: Name
         subject: Subject
         email: Email
+      keppler_contact_us/message_setting:
+        mailer_to: 'To'
+        mailer_from: 'From'

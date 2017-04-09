@@ -30,7 +30,7 @@ module KepplerContactUs
 
       # Only allow a trusted parameter "white list" through.
       def message_setting_params
-        params.require(:message_setting).permit(:mailer_to, :recaptcha_pv, :recaptcha_pb)
+        params.require(:message_setting).permit(:mailer_to, :mailer_from)
       end
   end
 end

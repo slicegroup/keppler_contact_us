@@ -5,9 +5,8 @@
 				.card-content
 					= simple_form_for @message_setting, url: url_for(update_message_settings_path) do |f|
 						.row
-							= f.input :mailer_to, as: :email
-							= f.input :recaptcha_pv
-							= f.input :recaptcha_pb
+							= f.input :mailer_to, label: false, as: :email, input_html: { placeholder: 'To'}
+							= f.input :mailer_from, label: false, as: :email, input_html: { placeholder: 'From'}
 						.row
 							.form-actions.right
 								= f.button :submit, "Guardar", class: "btn"

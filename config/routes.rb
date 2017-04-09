@@ -13,7 +13,7 @@ KepplerContactUs::Engine.routes.draw do
     resources :message_settings, only: [] do
       collection do
         get '/', to: 'message_settings#edit', as: 'edit'
-        put '/', to: 'message_settings#update', as: 'update'
+        patch '/', to: 'message_settings#update', as: 'update'
       end
     end
   end

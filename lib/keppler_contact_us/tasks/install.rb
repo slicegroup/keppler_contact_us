@@ -13,7 +13,8 @@ module KepplerContactUs
         def copy_initializer_file
           print "Agregado archivo de configuración...\n"
           app_path = Rails.root.join("config/initializers")
-          copier.copy_file File.join(gem_path, 'lib/templates/contact_us.rb'), File.join(app_path, 'contact_us.rb')
+          copier.copy_file File.join(gem_path, 'lib/templates/contact_us.rb'), File.join(app_path, 'keppler_contact_us.rb')
+          copier.copy_file File.join(gem_path, 'lib/templates/recaptcha.rb'), File.join(app_path, 'recaptcha.rb')
         end
 
         def copy_locales_files

@@ -12,14 +12,14 @@ Es un Engine que proporciona un formulario de contacto básico
 
 * Ruby >= 2.0.0
 * Rails >= 4.0.0
-* Keppler-admin >= 1.0.0
+* Keppler-admin >= 2.0.0
 
 ## Instalación
 
 Añadir la siguiente linea a su Gemfile
 
 ```ruby
-gem 'keppler_contact_us', git: "https://github.com/inyxtech/keppler_contact_us.git", tag: "<version>"
+gem 'keppler_contact_us', git: "https://github.com/inyxtech/keppler_contact_us.git", tag: "2.0"
 gem "recaptcha", require: "recaptcha/rails"
 ```
 
@@ -62,6 +62,7 @@ Asignale permisos al modulo en el archivo app/models/ability.rb.
 
 ```ruby
   can :manage, KepplerContactUs::Message
+  can :manage, KepplerContactUs::MessageSetting
 ```
 
 Para poder acceder al módulodesde el sidebar se debe agregar lo siguiente a `config/menu.yml`
@@ -69,10 +70,18 @@ Para poder acceder al módulodesde el sidebar se debe agregar lo siguiente a `co
 ```
   keppler_messages:
     name: keppler messages
-    url_path: /admin/messages
+    current: ['keppler_contact_us/messages', 'keppler_contact_us/message_settings']
     icon: email
-    current: ['keppler_contact_us/messages']
     model: KepplerContactUs::Message
+    submenu:
+      - messages:
+          name: Messages
+          url_path: /admin/messages
+          current: ['keppler_contact_us/messages']
+      - message_settings:
+          name: Message Settings
+          url_path: /admin/message_settings
+          current: ['keppler_contact_us/message_settings']
 ```
 
 ## Formulario de contactos
@@ -93,24 +102,10 @@ En el archivo `config/initializers/contact_us.rb` se puede estabelecer los datos
 
 ```ruby
 KepplerContactUs.setup do |config|
-	config.mailer_to = <mailer_to>
-	config.mailer_from = <mailer_from>
-	config.name_web = <name_>
 	#Route redirection after send
 	config.redirection = "/contact_us"
-
-
-	# Agregar keys de google recaptcha
-	Recaptcha.configure do |config|
-	  config.public_key  = "public_key"
-	  config.private_key = "private_key"
-	end
 end
 ```
-
-Nota: Puede obtener las llaves de Recaptcha desde esta dirección [Recaptcha Keys](https://www.google.com/recaptcha/admin)
-
-
 
 ## Vistas
 

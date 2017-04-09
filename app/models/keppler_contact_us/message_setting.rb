@@ -5,7 +5,7 @@ module KepplerContactUs
 
     # Fields for the search form in the navbar
     def self.search_field
-      :mailer_to_or_recaptcha_pv_or_recaptcha_pb_cont
+      :mailer_to_or_mailer_from
     end
   end
   #MessageSetting.import
