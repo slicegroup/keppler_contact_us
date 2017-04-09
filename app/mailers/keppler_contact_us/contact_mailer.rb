@@ -7,7 +7,7 @@ module KepplerContactUs
       mail(
         from: mailer_from,
         to: mailer_to,
-        subject: @client[:subject]
+        subject: @client.subject
       )
     end
   end

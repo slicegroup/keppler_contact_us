@@ -7,13 +7,15 @@
       %h1= "Contacto "
     %p
       %strong Nombre:
-      = @client[:name]
+      = @client.name
     %p
       %strong Email:
-      = @client[:email]
-    %p
-      %strong Asunto:
-      = @client[:subject]
-    %p
-      %strong Mensaje:
-      = @client[:content]
+      = @client.email
+    - if @client.subject
+      %p
+        %strong Asunto:
+        = @client.subject
+    - if @client.content
+      %p
+        %strong Mensaje:
+        = @client.content
