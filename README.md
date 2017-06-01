@@ -19,7 +19,7 @@ Es un Engine que proporciona un formulario de contacto básico
 Añadir la siguiente linea a su Gemfile
 
 ```ruby
-gem 'keppler_contact_us', git: "https://github.com/inyxtech/keppler_contact_us.git", branch: 'update'
+gem 'keppler_contact_us', git: "https://github.com/inyxtech/keppler_contact_us.git", branch: '1.1.0'
 gem "recaptcha", require: "recaptcha/rails"
 ```
 
@@ -115,4 +115,3 @@ Para copiar las vistas en `app/views/contact_us` y asi personalizarlas para adap
 ```ruby
 rake contact_us:copy_views
 ```
-
