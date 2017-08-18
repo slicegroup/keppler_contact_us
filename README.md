@@ -16,10 +16,10 @@ Es un Engine que proporciona un formulario de contacto básico
 
 ## Instalación
 
-Añadir la siguiente linea a su Gemfile
+Añadir la siguiente línea a su Gemfile
 
 ```ruby
-gem 'keppler_contact_us', git: "https://github.com/SliceDevelopers/keppler_contact_us.git", tag: '1.1.0'
+gem 'keppler_contact_us', git: "https://github.com/SliceDevelopers/keppler_contact_us.git", tag: '1.0.0'
 gem "recaptcha", require: "recaptcha/rails"
 ```
 
@@ -35,7 +35,7 @@ La siguiente linea habilitará las rutas del engine, debe ser colocada en el arc
 mount KepplerContactUs::Engine, :at => '/', as: 'messages'
 ```
 
-Para agregar `config/initializers/keppler_contact_us.rb` y asi estabelecer los datos de configuración debe ejecutar
+Para agregar `config/initializers/keppler_contact_us.rb` y asi establecer los datos de configuración debe ejecutar
 
 ```ruby
 rake contact_us:copy_initializer
@@ -65,7 +65,7 @@ Asignale permisos al modulo en el archivo app/models/ability.rb.
   can :manage, KepplerContactUs::MessageSetting
 ```
 
-Para poder acceder al módulodesde el sidebar se debe agregar lo siguiente a `config/menu.yml`
+Para poder acceder al módulo desde el sidebar se debe agregar lo siguiente a `config/menu.yml`
 
 ```
   keppler_messages:
@@ -85,7 +85,7 @@ Para poder acceder al módulodesde el sidebar se debe agregar lo siguiente a `co
 ```
 
 ## Formulario de contactos
-Para usar el formulario de contacto colocar el la accion del controlador lo siguiente.
+Para usar el formulario de contacto colocar el la acción del controlador lo siguiente:
 
 ```ruby
 @message = KepplerContactUs::Message.new
@@ -98,7 +98,7 @@ luego usar el render en la vista donde necesites el formulario.
 
 ## Configuración
 
-En el archivo `config/initializers/contact_us.rb` se puede estabelecer los datos de configuración.
+En el archivo `config/initializers/contact_us.rb` se puede establecer los datos de configuración.
 
 ```ruby
 KepplerContactUs.setup do |config|
@@ -107,6 +107,28 @@ KepplerContactUs.setup do |config|
 	config.redirection = "/contact_us"
 end
 ```
+
+En el archivo `config/initializers/recaptcha.rb` se encuentran establecidas las `site_key` y la `secret_key`
+
+```ruby
+Recaptcha.configure do |config|
+  # Localhost keys
+  config.site_key = Rails.application.secrets.site_key
+  config.secret_key = Rails.application.secrets.secret_key
+end
+```
+
+Para configurar estas llaves del Recaptcha para que éste funcione en `localhost:3000` en modo *development*, se establecen en el `config/secrets.yml` de la siguiente manera:
+
+```
+development:
+  ...
+  site_key: 6LcMNyQUAAAAAAXR84bWieZOIOdSYevYBPd0KrU8
+  secret_key: 6LcMNyQUAAAAAGxnJL2ChqpQCeKc6AdeCiREJERc
+  ...
+ ```
+ 
+ **Nota:** Puede obtener otras llaves de Recaptcha desde esta dirección [RecaptchaKeys](https://www.google.com/recaptcha/admin#list)
 
 ## Vistas
 
