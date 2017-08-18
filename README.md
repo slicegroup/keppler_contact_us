@@ -128,7 +128,7 @@ development:
   ...
  ```
  
- **Nota:** Puede obtener otras llaves de Recaptcha desde esta dirección [RecaptchaKeys](https://www.google.com/recaptcha/admin#list)
+ **Nota:** Puede obtener otras llaves de Recaptcha desde esta dirección [Recaptcha Keys](https://www.google.com/recaptcha/admin#list)
 
 ## Vistas
 
