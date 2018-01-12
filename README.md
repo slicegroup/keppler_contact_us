@@ -71,7 +71,7 @@ Para poder acceder al módulo desde el sidebar se debe agregar lo siguiente a `c
   keppler_messages:
     name: keppler messages
     current: ['keppler_contact_us/messages', 'keppler_contact_us/message_settings']
-    icon: email
+    icon: envelope
     model: KepplerContactUs::Message
     submenu:
       - messages:
@@ -127,7 +127,7 @@ development:
   secret_key: 6LcMNyQUAAAAAGxnJL2ChqpQCeKc6AdeCiREJERc
   ...
  ```
- 
+
  **Nota:** Puede obtener otras llaves de Recaptcha desde esta dirección [Recaptcha Keys](https://www.google.com/recaptcha/admin#list)
 
 ## Vistas

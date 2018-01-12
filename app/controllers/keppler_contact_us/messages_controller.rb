@@ -12,7 +12,7 @@ module KepplerContactUs
     # GET /messages
     def index
       @q = Message.ransack(params[:q])
-      messages = @q.result(distinct: true)
+      messages = @q.result(distinct: true).order("created_at DESC")
       @objects = messages.page(@current_page)
       @total = messages.size
 
@@ -25,7 +25,9 @@ module KepplerContactUs
 
     # GET /messages/1
     def show
+      @objects = Message.all
       message = Message.find_by(id: params[:id])
+      # @reply = Message.new(reply_id: message.id)
       message.update(read: true) unless message.read
     end
 

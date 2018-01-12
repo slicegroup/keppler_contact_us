@@ -10,7 +10,6 @@ module KepplerContactUs
 
     # GET /message_settings/1/edit
     def edit
-      @message_setting = MessageSetting.new unless @message_setting
     end
 
     # PATCH/PUT /message_settings/1
@@ -26,6 +25,9 @@ module KepplerContactUs
       # Use callbacks to share common setup or constraints between actions.
       def set_message_setting
         @message_setting = MessageSetting.first
+        unless @message_setting
+          @message_setting = KepplerContactUs::MessageSetting.create(mailer_from: 'info@keppler.com', mailer_to: 'info@keppler.com')
+        end
       end
 
       # Only allow a trusted parameter "white list" through.

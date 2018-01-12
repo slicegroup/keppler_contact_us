@@ -1,0 +1,20 @@
+-# %a.btn.btn-primary.btn-block.margin-bottom{:href => "compose.html"}= t("keppler.messages.compose")
+.box.box-solid
+	.box-header.with-border
+		%h3.box-title= t("keppler.messages.folder")
+		.box-tools
+			%button.btn.btn-box-tool{"data-widget" => "collapse", :type => "button"}
+				%i.fa.fa-minus
+	.box-body.no-padding
+		%ul.nav.nav-pills.nav-stacked
+			%li
+				%a{:href => "/admin/messages"}
+					%i.fa.fa-inbox
+					= t("keppler.messages.inbox")
+					- if !@objects.count.zero?
+						%span.label.label-primary.pull-right
+							= @objects.count
+			%li
+				%a{:href => "#"}
+					%i.fa.fa-envelope-o
+					= t("keppler.messages.sent")

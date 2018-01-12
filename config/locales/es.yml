@@ -12,12 +12,21 @@ es:
     messages:
       sent_message: 'Mensaje enviado satisfactoriamente'
       error_message: 'Error: Revise los campos del formulario.'
+      inbox: Bandeja de entrada
+      compose: Redactar
+      sent: Enviados
+      folder: Carpetas
+      from: Enviado por
+      read_mail: Leer email
     actions:
       send: Enviar
+    message_setting:
+      title: Configuración de contactos
+      mailer_to: Enviar a
+      mailer_from: Enviar desde
   activerecord:
     attributes:
       keppler_contact_us/message:
         name: Nombre
         subject: Asunto
         email: Email
-
