@@ -6,5 +6,6 @@ class CreateKepplerContactUsMessageSettings < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    KepplerContactUs::MessageSetting.create(mailer_from: '', mailer_to: '')
   end
 end

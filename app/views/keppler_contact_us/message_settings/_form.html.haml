@@ -1,12 +1,12 @@
-.wrapper
-  .wrapper-body.container
-    .wrapper-inputs
-      .card
-        .card-content
-          = simple_form_for @message_setting, url: url_for(update_message_settings_path) do |f|
-            .row
-              = f.input :mailer_to, as: :email
-              = f.input :mailer_from, as: :email
-            .row
-              .form-actions.right
-                = f.button :submit, "Guardar", class: "btn"
+= simple_form_for @message_setting, url: url_for(update_message_settings_path) do |f|
+  .col-lg-12
+    .box.slice-box
+      .box-header.with-border
+        %h3.box-title
+          = t('keppler.message_setting.title')
+      / /.box-header
+      .box-body
+        = f.input :mailer_to, as: :email, label: t('keppler.message_setting.mailer_to'), placeholder: t('keppler.message_setting.mailer_to')
+        = f.input :mailer_from, as: :email, label: t('keppler.message_setting.mailer_from'), placeholder: t('keppler.message_setting.mailer_from')
+        .form-actions.pull-right
+          = f.button :submit, t("keppler.actions.save"), name: "_save", class: "btn-primary"
