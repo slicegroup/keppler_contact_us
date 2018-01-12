@@ -1,23 +1,25 @@
 = title(t('keppler.titles.show', model: t("keppler.models.pluralize.messages")))
-.wrapper
-	.wrapper-body.container
-		.actions
-			- if can? :delete, KepplerContactUs::Message
-				= link_to message_path(@message), class: "btn-floating btn-flat right tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
-					= material_icon.md_18.delete.css_class("md-dark")
-			= link_to messages_path, class: "btn-floating btn-flat tooltipped", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-				= material_icon.md_18.arrow_back.css_class("md-dark")
-		.card
-			.card-content
-				%ul.list
-					%li.list-row
-						.display-label= model.human_attribute_name(:name)
-						.display-value.fs-body-1.tc-black-2= @message.name.humanize
-					%li.list-row
-						.display-label= model.human_attribute_name(:subject)
-						.display-value.fs-body-1.tc-black-2= @message.subject.humanize
-					%li.list-row
-						.display-label= model.human_attribute_name(:email)
-						.display-value.fs-body-1.tc-black-2= @message.email
-					%hr
-					.display-value.fs-body-1.tc-black-2= @message.content.humanize
+.col-md-3
+	= render 'keppler_contact_us/messages/folders'
+
+.col-lg-9
+	.box.slice-box
+		.box-header.with-border
+			.pull-right
+				= link_to message_path(@message), class: "btn btn-default", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
+					%i.fa.fa-trash-o
+					Delete
+		/ /.box-header
+		.box-body.no-padding
+			.mailbox-read-info
+				%h3= @message.subject
+				%h5
+					= "#{t('keppler.messages.from')}: #{@message.email}"
+					%span.mailbox-read-time.pull-right= time_ago_in_words(@message.created_at)
+			.mailbox-read-message
+				= @message.content
+		.box-footer
+
+		/ /.box-footer
+
+		/ /.box-footer

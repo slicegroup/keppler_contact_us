@@ -6,6 +6,7 @@ class CreateKepplerContactUsMessages < ActiveRecord::Migration
       t.string :email
       t.text :content
       t.boolean :read
+      t.integer :reply_id, default: 0
 
       t.timestamps null: false
     end

@@ -1,20 +1,45 @@
 = title(t('keppler.titles.index', model: t("keppler.models.pluralize.messages")))
 
-.listing.col.l9.m12.s12
-	= entries(@total, @objects)
-	%table.bordered
-		%tbody
-			- @objects.each do |message|
-				= render 'listing', message: message
-			- if @objects.size.zero?
-				%tr
-					%td{colspan: "4"}
-						%center
-							= t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.messages"))
+.container
+  .row
+    .col-md-3
+      = render 'keppler_contact_us/messages/folders'
 
-	= paginate @objects, window: 1
+    .col-lg-9
+      .box.slice-box
+        .box-header.with-border
+          %h3.box-title= t("keppler.messages.inbox")
+          / /.box-tools
+        / /.box-header
+        .box-body.no-padding
+          .mailbox-controls
+            / Check all button
+            %button.btn.btn-default.btn-sm.checkbox-toggle{:type => "button"}
+              %i.fa.fa-square-o
+            .btn-group
+              %button.btn.btn-default.btn-sm{:type => "button"}
+                %i.fa.fa-trash-o
+            / /.btn-group
+            %button.btn.btn-default.btn-sm{:type => "button"}
+              %i.fa.fa-refresh
+            .pull-right
+              = entries(@total, @objects)
+              .btn-group
+                %button.btn.btn-default.btn-sm{:type => "button"}
+                  %i.fa.fa-chevron-left
+                %button.btn.btn-default.btn-sm{:type => "button"}
+                  %i.fa.fa-chevron-right
+              / /.btn-group
+            / /.pull-right
+        .table-responsive.mailbox-messages
+          %table.table.table-hover.table-striped
+            %tbody
+            - @objects.each do |message|
+              = render 'listing', message: message
+              - if @objects.size.zero?
+                %tr
+                %td{colspan: "4"}
+                  %center
+                    = t('keppler.messages.not_found_records', model:  t("keppler.models.pluralize.messages"))
 
-.listing-show.col.l3.m12.hide-on-small-and-down.hide-on-med-and-down
-	= render 'description'
-
-
+          = paginate @objects, window: 1
