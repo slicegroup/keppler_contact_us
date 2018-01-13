@@ -2,6 +2,7 @@ KepplerContactUs::Engine.routes.draw do
   scope :admin do
     resources :messages do
       get '(page/:page)', action: :index, on: :collection, as: ''
+      post '/reply', action: :reply
       delete(
         '/destroy_multiple',
         action: :destroy_multiple,

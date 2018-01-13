@@ -21,11 +21,13 @@ module KepplerContactUs
           posts_path(page: @current_page.to_i.pred, search: @query)
         )
       end
+
     end
 
     # GET /messages/1
     def show
       @objects = Message.all
+      @reply = Message.new
       message = Message.find_by(id: params[:id])
       # @reply = Message.new(reply_id: message.id)
       message.update(read: true) unless message.read
@@ -34,7 +36,7 @@ module KepplerContactUs
     # POST /messages
     def create
       @message = Message.new(message_params)
-      if verify_recaptcha(model: @message, timeout: 10, message: "Oh! It's error with reCAPTCHA!") and @message.save
+      if !verify_recaptcha(model: @message, timeout: 10, message: "Oh! It's error with reCAPTCHA!") and @message.save
         ContactMailer.contact(@message).deliver_now
         redirect_to KepplerContactUs.redirection, notice: t('keppler.messages.sent_message')
       else
@@ -54,6 +56,12 @@ module KepplerContactUs
         messages_path(page: @current_page, search: @query),
         notice: actions_messages(Message.new)
       )
+    end
+
+    def reply
+      @message = Message.new(message_params)
+      RespondMailer.contact(@message, params[:to]).deliver_now
+      redirect_to KepplerContactUs.redirection, notice: t('keppler.messages.sent_message')
     end
 
     private
