@@ -60,7 +60,7 @@ module KepplerContactUs
 
     def reply
       @message = Message.new(message_params)
-      RespondMailer.contact(@message, params[:to]).deliver_now
+      ReplyMailer.contact(@message, params[:to]).deliver_now
       redirect_to KepplerContactUs.redirection, notice: t('keppler.messages.sent_message')
     end
 
