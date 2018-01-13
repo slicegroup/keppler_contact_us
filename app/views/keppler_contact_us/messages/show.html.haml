@@ -7,9 +7,9 @@
 		.box-header.with-border
 			.pull-right
 				= link_to message_path(@message), class: "btn btn-default", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.delete"), method: :delete, data: { confirm: t("keppler.messages.data_confirm") } do
-					%i.fa.fa-trash-o
+					%i.icon-trash
 					Delete
-		/ /.box-header
+
 		.box-body.no-padding
 			.mailbox-read-info
 				%h3= @message.subject
@@ -20,6 +20,21 @@
 				= @message.content
 		.box-footer
 
-		/ /.box-footer
+			.box.slice-box
+				.box-header.with-border
+					%h3.box-title
+						Responder a
+						%strong= "#{@message.email}"
 
-		/ /.box-footer
+				= simple_form_for @reply, url: message_reply_path(@message), :method => :post do |f|
+					.box-body
+						.form-group
+							%input{type: "hidden", name: "Hacia", value: "#{@message.email}"}
+							%input.form-control{:placeholder => "To: #{@message.email}", disabled: "disabled", name: "to"}/
+						.form-group
+							= f.input :subject, label: false, placeholder: "asunto"
+						.form-group
+							= f.input :content, :as => :ckeditor, label: false, input_html: { :ckeditor => { :toolbar => 'mini'} }
+					.box-footer
+						.pull-right
+							= f.submit "Enviar", class: "btn-primary"
