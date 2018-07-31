@@ -1,0 +1,14 @@
+# KepplerContactUs
+menu:
+  messages:
+    name: Messages
+    current: ['/admin/contact_us/messages']
+    url_path: /admin/contact_us/messages
+    icon: envelope
+    model: KepplerContactUs::Message
+    # submenu:
+    #   - messages:
+    #       name: messages
+    #       url_path: /admin/contact_us/messages
+    #       current: ['/admin/contact_us/messages']
+    #       model: KepplerContactUs::Message
