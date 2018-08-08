@@ -1,23 +1,16 @@
--# %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
--# %link{ href: 'https://fonts.googleapis.com/css?family=Patua+One', rel: 'stylesheet', type: 'text/css' }
--# %title= content_for?(:title) ? yield(:title) : 'Keppler Admin'
--# = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css'
+%meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
+%link{ href: 'https://fonts.googleapis.com/css?family=Patua+One', rel: 'stylesheet', type: 'text/css' }
+%title= content_for?(:title) ? yield(:title) : 'Keppler Admin'
+= csrf_meta_tags
+
+// Keppler Contact Us Stylesheets
+= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css'
 = stylesheet_link_tag 'keppler_contact_us/admin/application', media: 'all'
--# = javascript_include_tag 'keppler_contact_us/admin/application'#, 'data-turbolinks-track: true
+-# = stylesheet_link_tag 'https://rawgit.com/enyo/dropzone/master/dist/dropzone.css  '
 
-= javascript_include_tag '/assets/keppler_contact_us/admin/wysihtml5/wysihtml5-0.3.0.js'
+// Keppler Contact Us Javascripts
+= javascript_include_tag 'keppler_contact_us/admin/application', 'data-turbolinks-track': true
+-# = javascript_include_tag '/assets/keppler_contact_us/admin/wysihtml5/wysihtml5-0.3.0.js'
 = javascript_include_tag '/assets/keppler_contact_us/admin/wysihtml5/bootstrap3-wysihtml5.js'
-
-/ Inserting the scripts once for the whole page
-= javascript_include_tag 'https://cdn.rawgit.com/icons8/titanic/master/dist/js/titanic.min.js'
-= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/4.5.9/bodymovin.min.js'
-:javascript
-  var titanic = new Titanic({
-    hover: false, // auto animated on hover (default true)
-    click: true  // auto animated on click/tap (default false)
-  });
-
-  $('.titanic').click(function() {
-    $(this).addClass('animated');
-    alert('animated');
-  })
+-# = javascript_include_tag '/assets/keppler_contact_us/admin/wysihtml5/wysihtml5_advanced.js'
+-# = javascript_include_tag 'https://rawgit.com/enyo/dropzone/master/dist/dropzone.js'

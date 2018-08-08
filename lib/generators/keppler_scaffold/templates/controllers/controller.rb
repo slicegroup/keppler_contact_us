@@ -8,7 +8,6 @@ module Admin
     layout '<%= namespaced_path %>/admin/layouts/application'
     before_action :set_<%= singular_table_name %>, only: [:show, :edit, :update, :destroy]
     before_action :show_history, only: [:index]
-    before_action :set_attachments
     before_action :authorization
     include <%= namespaced_path.split('_').map(&:capitalize).join('') %>::Concerns::Commons
     include <%= namespaced_path.split('_').map(&:capitalize).join('') %>::Concerns::History
@@ -124,11 +123,6 @@ module Admin
 
     def authorization
       authorize <%= class_name %>
-    end
-
-    def set_attachments
-      @attachments = ['logo', 'brand', 'photo', 'avatar', 'cover', 'image',
-                      'picture', 'banner', 'attachment', 'pic', 'file']
     end
 
     # Use callbacks to share common setup or constraints between actions.

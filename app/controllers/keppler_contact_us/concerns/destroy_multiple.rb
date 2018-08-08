@@ -10,10 +10,10 @@ module KepplerContactUs
 
       private
 
-      def model
-        model_name = "#{module_name}::#{controller_name.classify}"
-        model_name.constantize
-      end
+      # def model
+      #   model_name = "#{module_name}::#{controller_name.classify}"
+      #   model_name.constantize
+      # end
 
       def redefine_ids(ids)
         ids.delete('[]').split(',').select do |id|

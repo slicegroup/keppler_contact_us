@@ -8,6 +8,10 @@ module KepplerContactUs
       @objects = objects
     end
 
+    def index?
+      keppler_admin? || user_can?(@objects, 'index')
+    end
+
     def upload?
       false
     end
@@ -16,36 +20,44 @@ module KepplerContactUs
       false
     end
 
-    def reply?
-      true
-    end
-
-    def share?
-      true
+    def send?
+      index?
     end
 
     def favorite?
-      true
+      index?
     end
 
     def reload?
-      true
+      index?
+    end
+
+    def show?
+      index?
+    end
+
+    def reply?
+      show?
+    end
+
+    def share?
+      show?
     end
 
     def print?
-      true
+      show?
     end
 
     def read? 
-      true
+      index?
     end 
 
     def unread?
-      true
+      index?
     end 
 
     def favorites?
-      true
+      index?
     end
   end
 end

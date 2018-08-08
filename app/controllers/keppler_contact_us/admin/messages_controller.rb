@@ -4,11 +4,15 @@ module KepplerContactUs
     # MessagesController
     class MessagesController < ApplicationController
       layout 'keppler_contact_us/admin/layouts/application'
-      include ObjectQuery
+      before_action :authenticate_user!
+      skip_before_action :verify_authenticity_token
+      include KepplerContactUs::Concerns::ObjectQuery
       include KepplerContactUs::Concerns::Commons
       include KepplerContactUs::Concerns::History
       include KepplerContactUs::Concerns::DestroyMultiple
 
+      before_action :folders
+      before_action :labels
 
       # GET /messages
       def index 
@@ -18,6 +22,16 @@ module KepplerContactUs
       
       def new
         @object = model.new
+      end
+      
+      def create
+        message_params[:to_emails].split(', ')
+        @object = model.new(message_params)
+        if @object.save
+          KepplerContactUs::Admin::MessageMailer.with(object: @object).send_mail(@object).deliver_now
+          flash[:notice] = actions_messages(@objects)
+        end
+        redirect_to_index
       end
 
       # GET /messages/1
@@ -45,38 +59,75 @@ module KepplerContactUs
         redirect_to_index
       end
       
+      def send_message
+        message_params[:to_emails].split(', ')
+        @object = model.new(message_params)
+        if @object.save
+          KepplerContactUs::Admin::MessageMailer.with(object: @object).send_mail(@object).deliver_now
+          flash[:notice] = actions_messages(@objects)
+        end
+        redirect_to_index
+      end
+
+      def sent
+        objects_where(from_email: current_user.email)
+      end
+      
       def read
-        @objects = @objects.where(read: true)
-        @total = model.where(read: true).count
+        objects_where(read: true)
       end
       
       def unread
-        @objects = @objects.where(read: false)
-        @total = model.where(read: false).count
+        objects_where(read: !true)
       end
 
       def favorites
-        @objects = @objects.where(favorite: true)
-        @total = model.where(favorite: true).count
+        objects_where(favorite: true)
       end
 
-      def reply
-        @to = params[:to]
-        @subject = params[:subject]
-      end 
-      
-      def share
-        # @to = params[:to]
-        @subject = params[:subject]
+      def settings
+        @setting = ::Setting.first
+        @render = 'email_setting'
+        # @social_medias = social_account_permit_attributes
+        # @colors = social_account_colors
       end
+
+      # def reply
+      # end 
+      
+      # def share
+      # end
 
       private
+
+      def objects_where(condition)
+        # if action_name.include?('read')
+        #   @objects = @objects.where(from_email: !current_user.email)
+        # end
+        @objects = @objects.where(condition)
+        @total = model.all.where(condition).count
+        respond_to_formats(@objects)
+      end
+
+      def folders
+        @folders = YAML.load_file(
+          "rockets/keppler_contact_us/config/folders.yml"
+        ).values.each(&:symbolize_keys!)
+      end
+      
+      def labels
+        @labels = YAML.load_file(
+          "rockets/keppler_contact_us/config/labels.yml"
+        ).values.each(&:symbolize_keys!)
+      end
 
       # Only allow a trusted parameter 'white list' through.
       def message_params
         params.require(:message).permit(
           :name,
-          :email,
+          :from_email,
+          # { to_emails: [] },
+          :to_emails,
           :subject,
           :content,
           :favorite,

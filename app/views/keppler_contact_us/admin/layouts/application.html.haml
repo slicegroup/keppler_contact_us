@@ -1,7 +1,6 @@
 !!!
 %html
   %head
-    = render 'admin/layouts/head'
     = render 'keppler_contact_us/admin/layouts/head'
   %body.sidebar-mini.skin-blue{style: "height: auto; min-height: 100%;" }
     #log
@@ -9,15 +8,15 @@
     - if loggedin?
       .wrapper{style:"height: auto; min-height: 100vh;" }
         = render 'keppler_contact_us/admin/layouts/navigation', q: @q
-        = render 'admin/layouts/sidebar'
-        = render 'admin/layouts/messages'
+        = render 'keppler_contact_us/admin/layouts/sidebar'
+        = render 'keppler_contact_us/admin/layouts/messages'
         .content-wrapper{ style: "min-height: 901px;" }
           = yield
 
       .keppler-preloader
         = preloader
 
-      = render 'admin/layouts/footer'
+      = render 'keppler_contact_us/admin/layouts/footer'
     - else
       %main.devise{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
         = yield

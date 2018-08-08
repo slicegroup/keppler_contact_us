@@ -27,6 +27,8 @@ es:
       phone: Teléfono
       subject: Asunto
       content: Contenido del mensaje
+      from_email: Desde
+      to_emails: Hacia
     errors:
       messages:
         record_invalid: "Validación fallida: %{errors}"
@@ -41,6 +43,20 @@ es:
       trash: Eliminados
       labels: Etiquetas
     labels:
+      sent: Enviados
       read: Leídos
       unread: No leídos
       favorites: Favoritos
+      settings: Configuración
+    actions:
+      send: Enviar
+      insert_email: Ingresa un email...
+      insert_subject: Añade un asunto a tu mensaje...
+      check_favorite: Marcar como favorito
+      discheck_favorite: Desmarcar de favoritos
+    attributes:
+      to_emails: 'Enviar a'
+      subject: Asunto
+      sent: Enviado
+      read: Leído
+      unread: No leído

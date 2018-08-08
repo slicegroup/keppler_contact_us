@@ -8,18 +8,18 @@
           .badge.objects-counter{ style: 'margin-bottom: 0 10px' }
             = entries(@total, @objects)
           .toolbar
-            - if can?(<%= namespaced_path.split('_').map(&:capitalize).join('') %>::<%= singular_table_name.camelcase %>).download?
+            - if can?(module_name).download?
               .toolbar-item
-                = link_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_download_path(<%= namespaced_path.split('_').map(&:capitalize).join('') %>::<%= singular_table_name.camelcase %>, :format => :xls), class: "tool-btn", 'data-toggle': 'tooltip', 'data-original-title': t('keppler.actions.download_records') do
+                = link_to admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_download_path(module_name, :format => :xls), class: "tool-btn", 'data-toggle': 'tooltip', 'data-original-title': t('keppler.actions.download_records') do
                   %i.icon-cloud-download
-            - if can?(<%= namespaced_path.split('_').map(&:capitalize).join('') %>::<%= singular_table_name.camelcase %>).upload?
+            - if can?(module_name).upload?
               .toolbar-item
                 = link_to "", class: "tool-btn", 'data-toggle': 'tooltip', 'data-original-title': t('keppler.actions.upload_records'), id: "<%= singular_table_name %>" do
                   %i.icon-cloud-upload
             .toolbar-item
               = link_to reload_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= plural_table_name %>_path, class: "tool-btn", remote: true do
                 %i.icon-reload
-            - if can?(<%= namespaced_path.split('_').map(&:capitalize).join('') %>::<%= singular_table_name.camelcase %>).destroy_multiple?
+            - if can?(module_name).destroy_multiple?
               .toolbar-item
                 .checkbox
                   %label{ for: 'checkbox-all' }
@@ -76,7 +76,7 @@
               %tbody
                 %tr
                   %td
-                    = render 'admin/layouts/listing_preloader'
+                    = render 'keppler_contact_us/admin/layouts/listing_preloader'
         %center#paginator-module
           = paginate @objects, window: 1
   %aside.control-sidebar
@@ -84,7 +84,7 @@
   %aside.index-show.control-sidebar
 
   .mixed-btn
-    - if can?(<%= namespaced_path.split('_').map(&:capitalize).join('') %>::<%= singular_table_name.camelcase %>).create?
+    - if can?(module_name).create?
       = link_to new_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path, class: "btn-float" do
         +
 

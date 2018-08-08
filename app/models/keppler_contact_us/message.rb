@@ -1,17 +1,17 @@
 # Message Model
 module KepplerContactUs
   class Message < ApplicationRecord
-    include ActivityHistory
-    include CloneRecord
-    include Uploadable
-    include Downloadable
-    include Sortable
     include KepplerContactUs::Concerns::Messageable
+    include KepplerContactUs::Concerns::ActivityHistory
+    include KepplerContactUs::Concerns::CloneRecord
+    include KepplerContactUs::Concerns::Uploadable
+    include KepplerContactUs::Concerns::Downloadable
+    include KepplerContactUs::Concerns::Sortable
     acts_as_list
 
     # Fields for the search form in the navbar
     def self.search_field
-      fields = %w[name email subject content]
+      fields = %w[name from_email to_emails subject content]
       build_query(fields, :or, :cont)
     end
 

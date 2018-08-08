@@ -5,7 +5,6 @@ module KepplerContactUs
       extend ActiveSupport::Concern
 
       included do
-        before_action :set_attachments
         before_action :paginator_params
         before_action :set_setting
         before_action :this_object, only: %i[show edit update destroy favorite reply share]
@@ -14,14 +13,10 @@ module KepplerContactUs
 
       private
 
-      def authorization
-        authorize model
-      end
-
       # Use callbacks to share common setup or constraints between actions.
       def this_object
         param_id = params[:id] || params["#{controller_name.singularize}_id".to_sym]
-        return unless param_id
+        return if param_id.nil? || param_id.to_i.zero?
         @object = model.find(param_id)
       end
 
@@ -32,23 +27,14 @@ module KepplerContactUs
         @total = q.size
       end
 
-      def set_attachments
-        @attachments = %w[logo brand photo avatar cover image
-                          picture banner attachment pic file]
-      end
-
       def paginator_params
         @search_field = model.search_field if listing?
         @query = params[:search] unless params[:search].blank?
         @current_page = params[:page] unless params[:page].blank?
       end
-
-      def set_setting
-        @setting = Setting.first
-      end
-
+      
       def module_name
-        self.class.to_s.split('::').first.constantize
+        controller_path.split('/').split('admin').flatten.join('/').classify.constantize
       end
 
       # Get submit key to redirect, only [:create, :update]

@@ -9,11 +9,15 @@ KepplerContactUs::Engine.routes.draw do
         get '/favorite', action: :favorite
         get '/reply', action: :reply
         get '/share', action: :share
+        patch '/send', action: :send_message
+        # post '/create', action: :create
         post '/sort', action: :sort, on: :collection
         get '/reload', action: :reload, on: :collection
+        get '/sent', action: :sent, on: :collection
         get '/read', action: :read, on: :collection
         get '/unread', action: :unread, on: :collection
         get '/favorites', action: :favorites, on: :collection
+        get '/settings', action: :settings, on: :collection
         delete '(page/:page)/destroy_multiple', action: :destroy_multiple, on: :collection
       end
 

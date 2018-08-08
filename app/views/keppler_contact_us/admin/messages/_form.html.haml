@@ -8,61 +8,61 @@
             = render 'folders'
             = render 'labels'
           .col-md-9
-            = simple_form_for [:admin, :contact_us, object] do |f|
+            -# , method: "#{ action_name.eql?('new') ? :post : :put }", url: "/admin/#{params[:productable_type]}/#{params[:productable_id]}/products/#{ params[:product_id] if action_name.eql?('edit') }"
+            -# = simple_form_for [:admin, :contact_us, object], url: (object.id.nil? ? new_admin_contact_us_message_path : admin_contact_us_message_send_path(object)), method: :post do |f|
+            = simple_form_for [:admin, :contact_us, object], action: (action_name.eql?('new') ? :create : :send_message), url: (admin_contact_us_message_send_path unless action_name.eql?('new')), method: (action_name.eql?('new') ? :post : :patch) do |f|#, url: "/admin/contact_us/#{controller_name}#{'/' + params[:id] unless action_name.eql?('new') }/#{action_name.eql?('new') ? 'create' : 'send_message'}" do |f|
               .container-fluid
                 -# .row
                   .col-lg-2
                     = link_to :back, class: "", "data-position" => "bottom", "data-tooltip" => t("keppler.actions.back") do
-                      .arrow-back.btn.btn-default
+                      .arrow-back.btn.btn-default|
                         %i.fa.fa-angle-left
                         = t('keppler.actions.back')
 
                 .row
                   .box.slice-box
                     .box-header.with-border
-                      %h3.box-title= t("keppler.modules.#{action_name.underscore}")
+                      %h3.box-title= t("keppler.modules.#{action_name.underscore}") # + "(#{controller_path})"
                       .box-tools.pull-right
-                        %a.btn.btn-box-tool{"data-widget" => "collapse", :type => "button" }
+                        %a.btn.btn-box-tool{'data-widget' => 'collapse', type: 'button' }
                           %i.fa.fa-minus
 
-                    .box-body
+                    .box-body.message-form
+                      = f.input :name, input_html: { value: current_user.name }, as: :hidden
+                      = f.input :from_email, input_html: { value: current_user.email }, as: :hidden
                       .form-group
-                        %input.form-control{placeholder: 'To:', value: (object&.email if action_name.eql?('reply')) }
+                        = f.input :to_emails, label: t('keppler-contact-us.attributes.to_emails'), placeholder: t('keppler-contact-us.actions.insert_email'), as: :string, input_html: { 'data-role': 'tagsinput', value: (object&.from_email if action_name.eql?('reply')) }, class: 'form-control bootstrap-tagsinput'
                       .form-group
-                        %input.form-control{placeholder: 'Subject:', value: (object&.subject) }
+                        = f.input :subject, label: t('keppler-contact-us.attributes.subject'), placeholder: t('keppler-contact-us.actions.insert_subject'), value: (object&.subject) 
                       .form-group
-                        %textarea#compose-textarea.form-control{ style: 'height: 300px;', value: (object&.content if action_name.eql?('share')) }
-                          = raw object&.content if action_name.eql?('share')
+                        = f.input :content, as: :wysihtml5, input_html: { value: (action_name.eql?('reply') ? '' : object&.content) }
+                        = f.input :read, input_html: { value: true }, as: :hidden
                       .form-group
-                        .btn.btn-default.btn-file
-                          %i.fa.fa-paperclip
-                          Attachment
-                          %input{ name: 'attachment', type: 'file' }/
-                        %p.help-block Max. 32MB
-            
-:javascript
-  var myCustomTemplates = {
-    html : function(locale) {
-      return "<li>" +
-            "<div class='btn-group'>" +
-            "<a class='btn' data-wysihtml5-action='change_view' title='" + locale.html.edit + "'>HTML</a>" +
-            "</div>" +
-            "</li>";
+                        = f.submit t('keppler-contact-us.actions.send')
+
+= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js'
+= javascript_include_tag '/assets/keppler_contact_us/admin/bootstrap-tagsinput.min.js'
+
+-# :javascript
+  $('.bootstrap-tagsinput').tagsinput({
+    confirmKeys: [13, 188, 44, 32, 9],
+    // trimValue: true,
+    typeahead: {
+      source: ['Amsterdam', 'Washington', 'Sydney', 'Beijing', 'Cairo']
+      // source: function(query) {
+      //   url: `${path_array}.json`,
+      //   success: function (resp) {
+      //     console.log(resp);
+      //   }
+      // })
     }
-  }
-  $('#compose-textarea').wysihtml5({
-    toolbar: {
-      "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
-      "emphasis": true, //Italics, bold, etc. Default true
-      "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
-      "html": false, //Button which allows you to edit the generated HTML. Default false
-      "link": true, //Button to insert a link. Default true
-      "image": true, //Button to insert an image. Default true,
-      "color": false, //Button to change color of font  
-      "blockquote": true, //Blockquote  
-      "size": 'small' //default: none, other options are xs, sm, lg
+    // itemValue: function(item) {
+    //   return item.id;
+    // }
+  });
+  $(document).keyup(function(e){console.log(e)})
+  $('input').keydown(function( event ) {
+    if ( event.which == 13 ) {
+      event.preventDefault();
     }
-  })//.editor.setValue('asdafasfasdasdasdasfasda');$("#some-textarea").wysihtml5();
-  //var editorObj = $("#compose-textarea").data('wysihtml5');
-  //var editor = editorObj.editor;
-  //editor.setValue('Some text dynamically set.');
+  })

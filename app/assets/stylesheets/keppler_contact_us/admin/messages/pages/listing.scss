@@ -80,6 +80,11 @@
     max-width: 100%;
   }
 
+  .mailbox-read {
+    vertical-align: middle;
+    text-align: center;
+  }
+
   .mailbox-name {
     max-width: 100px;
     min-width: 100px;
@@ -97,8 +102,8 @@
   }
 
   .mailbox-date {
-    max-width: 200px;
-    min-width: 160px;
+    // max-width: 205px;
+    // min-width: 201px;
     i {
       padding: 5px;
     }

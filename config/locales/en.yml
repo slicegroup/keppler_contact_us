@@ -47,6 +47,8 @@ en:
       last_name: 'Last Name'
       full_name: 'Full Name'
       email: Email
+      from_email: From
+      to_emails: To
       role: Role
       phone: Phone
       phone_number: 'Phone Number'

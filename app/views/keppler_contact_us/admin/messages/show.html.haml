@@ -16,17 +16,21 @@
                     = link_to edit_admin_contact_us_message_path(@object), class: 'btn btn-box-tool', 'data-toggle': 'tooltip', 'data-original-title': t('keppler.actions.edit') do
                       %i.icon-pencil
 
-                  = link_to admin_contact_us_message_path(@object.id - 1), class: 'btn btn-box-tool', 'data-original-title': 'Previous', 'data-toggle': 'tooltip', disabled: module_name.all.first.eql?(@object) do
+                  = link_to admin_contact_us_message_path(@object.id.pred), class: 'btn btn-box-tool', 'data-original-title': 'Previous', 'data-toggle': 'tooltip', disabled: module_name.all.first.eql?(@object) do
                     %i.icon-arrow-left
-                  = link_to admin_contact_us_message_path(@object.id + 1), class: 'btn btn-box-tool', 'data-original-title': 'Next', 'data-toggle': 'tooltip', disabled: module_name.all.last.eql?(@object) do
+                  = link_to admin_contact_us_message_path(@object.id.next), class: 'btn btn-box-tool', 'data-original-title': 'Next', 'data-toggle': 'tooltip', disabled: module_name.all.last.eql?(@object) do
                     %i.icon-arrow-right
 
               .box-body.no-padding
                 .mailbox-read-info
                   %h3= @object.subject
                   %h5
-                    From: #{@object.email}
-                    %small (#{@object.name})
+                    #{t('activerecord.attributes.from_email')}: #{@object.name}
+                    %small.label.label-default #{@object.from_email}
+                  %h5
+                    #{t('activerecord.attributes.to_emails')}: 
+                    - @object.to_emails.split(',').each do |to_email|
+                      %small.label.label-default #{to_email}
                 / /.mailbox-read-info
                 .mailbox-controls.with-border
                   .btn-group

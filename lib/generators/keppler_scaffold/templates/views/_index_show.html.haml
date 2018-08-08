@@ -1,6 +1,6 @@
 .tab-content
   %h6.actions
-    - if can?(<%= namespaced_path.split('_').map(&:capitalize).join('') %>::<%= singular_table_name.camelcase %>).update?
+    - if can?(module_name).update?
       = link_to edit_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path(@<%= singular_table_name %>), 'data-toggle': 'tooltip', 'data-original-title': t("keppler.actions.edit"), class: 'pull-left' do
         %i.icon-pencil
         %span= t('keppler.actions.edit')

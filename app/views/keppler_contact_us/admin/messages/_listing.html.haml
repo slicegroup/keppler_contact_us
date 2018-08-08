@@ -6,4 +6,5 @@
           %td.center
             %h6= t('keppler.messages.not_found_records', model: t('keppler.models.pluralize.messages'))
       - objects.each do |message|
-        = render 'listing_item', object: message, query: query
+        %tr.message-row{ class: ('read' if message.read), id: "row-#{message.id}" }
+          = render 'listing_item', object: message, query: query

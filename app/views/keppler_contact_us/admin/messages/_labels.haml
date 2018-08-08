@@ -6,7 +6,7 @@
         %i.fa.fa-minus
   .box-body.no-padding
     %ul.nav.nav-pills.nav-stacked
-      - [{name: 'unread', icon: 'envelope'}, {name: 'read', icon: 'envelope-open'}, {name: 'favorites', icon: 'star'}].each do |label|
+      - @labels.each do |label|
         %li{ class: ('active' if controller_path.include?(label[:name])) }
           = link_to "/admin/contact_us/#{controller_name}/#{label[:name]}" do
             %i{ class: "icon-#{label[:icon]}"}

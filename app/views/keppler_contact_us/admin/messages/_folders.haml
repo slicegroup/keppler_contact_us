@@ -7,7 +7,7 @@
         %i.fa.fa-minus
   .box-body.no-padding
     %ul.nav.nav-pills.nav-stacked
-      - [{name: 'messages', icon: 'drawer'}, {name: 'cotizations', icon: 'basket'}, {name: 'subscriptions', icon: 'people'}].each do |ctrl|
+      - @folders.each do |ctrl|
         %li{ class: ('active' if controller_path.include?(ctrl[:name])) }
           = link_to "/admin/contact_us/#{ctrl[:name]}" do
             %i{ class: "icon-#{ctrl[:icon]}"}
