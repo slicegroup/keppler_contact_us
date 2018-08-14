@@ -16,6 +16,6 @@ $(document).ready(function() {
   })
 
   $('#customize-index .icon-trash').click(function() {
-    $('.keppler-preloader').css('display', 'block')
+    $('.spinner').css('display', 'block')
   })
 });

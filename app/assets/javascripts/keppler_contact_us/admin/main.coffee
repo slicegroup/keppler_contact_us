@@ -1,9 +1,4 @@
-$(window).load ->
-
-  hidePreloader = ->
-    preloader = $('.keppler-preloader')
-    preloader.fadeOut preloaderFadeOutTime
-    return
+$(document).on 'turbolinks:load', ->
 
   toggleMenu = ->
     $slice = $('#sidebar-footer .brand')
@@ -28,6 +23,7 @@ $(window).load ->
       # else
       #   $('#search form').submit()
 
+
     $('.hide-search').click ->
       $('#search')
         .removeClass 'display-search'
@@ -46,7 +42,17 @@ $(window).load ->
     # Ver documentación en https://jqueryui.com/datepicker
   })
 
-  preloaderFadeOutTime = 500
-  hidePreloader()
+  $('.close-index-show').click ->
+    $('.index-show').css 'right', -$('.index-show').outerWidth()
+
+  $('#open-historial').click ->
+    $('.listing-show .control-sidebar').toggleClass 'control-sidebar-open'
+  
   searchButton()
   return
+
+$(document).ready ->
+  $('.spinner').css 'display', 'block'
+
+$(window).load ->
+  $('.spinner').fadeOut 500

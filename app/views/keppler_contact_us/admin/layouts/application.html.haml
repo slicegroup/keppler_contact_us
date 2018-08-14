@@ -13,7 +13,7 @@
         .content-wrapper{ style: "min-height: 901px;" }
           = yield
 
-      .keppler-preloader
+      .spinner
         = preloader
 
       = render 'keppler_contact_us/admin/layouts/footer'
@@ -21,5 +21,5 @@
       %main.devise{ style: @appearance.image_background? ? "background-image: url(#{@appearance.image_background})" : nil  }
         = yield
     - if action_name.eql?('index')
-      %script{src: "/assets/vue_admin/index.js" }
+      %script{src: "/assets/keppler_contact_us/vue_admin/index.js" }
     = keppler_boolean_script

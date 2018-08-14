@@ -26,8 +26,9 @@
                         %li
                           = link_to submenu[name]['url_path'], class: "treeview-menu-link #{ 'active current' if submenu[name]['url_path'].include?(controller_name)}", 'data-no-turbolink': true do 
                             = t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}")
-                            %span.pull-right-container
-                              %span.label.label-primary.pull-right 13
+                            - if submenu[name]['model']&.constantize&.attribute_names&.include?('read') && !submenu[name]['model'].constantize.unread_count.zero?
+                              %span.pull-right-container
+                                %span.label.label-primary.pull-right.bg-red= submenu[name]['name']
                         - if menu[key]['model'].constantize.attribute_names.include?('read') && !menu[key]['model'].constantize.unread_count.zero?
                           %span.pull-right-container
                             %small.label.pull-right.bg-red= menu[key]['model'].constantize.unread_count

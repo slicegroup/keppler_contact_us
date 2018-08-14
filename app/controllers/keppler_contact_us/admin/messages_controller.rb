@@ -101,11 +101,15 @@ module KepplerContactUs
       private
 
       def objects_where(condition)
-        # if action_name.include?('read')
-        #   @objects = @objects.where(from_email: !current_user.email)
-        # end
-        @objects = @objects.where(condition)
-        @total = model.all.where(condition).count
+        query = @q.result(distinct: true)
+        filtered_objects = query.where(condition).order(position: :desc)
+        if action_name.eql?('read')
+          no_current_user_messages = model.reject_current_user_email
+          no_current_user_ids = no_current_user_messages.map(&:id)
+          filtered_objects = filtered_objects.where(id: no_current_user_ids)
+        end
+        @objects = filtered_objects.page(@current_page)
+        @total = filtered_objects.size
         respond_to_formats(@objects)
       end
 

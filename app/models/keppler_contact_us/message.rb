@@ -9,6 +9,10 @@ module KepplerContactUs
     include KepplerContactUs::Concerns::Sortable
     acts_as_list
 
+    def self.reject_current_user_email
+      all.reject { |x| x.from_email.eql?(current_user.email) }
+    end
+
     # Fields for the search form in the navbar
     def self.search_field
       fields = %w[name from_email to_emails subject content]
