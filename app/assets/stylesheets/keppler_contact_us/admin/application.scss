@@ -12,8 +12,13 @@
 @import 'utils/base';
 
 // Wysihtml5 editor
+<<<<<<< HEAD
 @import 'wysihtml5/bootstrap3-wysihtml5';
 // @import 'wysihtml5/*';
+=======
+// @import 'bootstrap-wysihtml5/bootstrap3-wysihtml5';
+@import 'wysihtml5/*';
+>>>>>>> e85f7aa49cacc350fa3b8e864ce1a3461b2667b9
 
 // Bootstrap tagsinput
 @import 'bootstrap-tagsinput/*';

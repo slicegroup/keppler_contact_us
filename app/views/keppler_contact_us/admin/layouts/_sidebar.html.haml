@@ -27,8 +27,14 @@
                           = link_to submenu[name]['url_path'], class: "treeview-menu-link #{ 'active current' if submenu[name]['url_path'].include?(controller_name)}", 'data-no-turbolink': true do 
                             %i{ class: "icon-#{submenu[name]['icon']} text-muted" }
                             = t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}")
+<<<<<<< HEAD
                             -# %span.pull-right-container
                               %span.label.label-primary.pull-right 13
+=======
+                            - if submenu[name]['model']&.constantize&.attribute_names&.include?('read') && !submenu[name]['model'].constantize.unread_count.zero?
+                              %span.pull-right-container
+                                %span.label.label-primary.pull-right.bg-red= submenu[name]['name']
+>>>>>>> e85f7aa49cacc350fa3b8e864ce1a3461b2667b9
                         - if menu[key]['model'].constantize.attribute_names.include?('read') && !menu[key]['model'].constantize.unread_count.zero?
                           %span.pull-right-container
                             %small.label.pull-right.bg-red= 13 # menu[key]['model'].constantize.unread_count
