@@ -25,12 +25,13 @@
                       - submenu.each do |name, _val|
                         %li
                           = link_to submenu[name]['url_path'], class: "treeview-menu-link #{ 'active current' if submenu[name]['url_path'].include?(controller_name)}", 'data-no-turbolink': true do 
+                            %i{ class: "icon-#{submenu[name]['icon']} text-muted" }
                             = t("keppler.sidebar-menu.#{menu[key]['name'].parameterize}-submenu.#{submenu[name]['name'].parameterize}")
-                            %span.pull-right-container
+                            -# %span.pull-right-container
                               %span.label.label-primary.pull-right 13
                         - if menu[key]['model'].constantize.attribute_names.include?('read') && !menu[key]['model'].constantize.unread_count.zero?
                           %span.pull-right-container
-                            %small.label.pull-right.bg-red= menu[key]['model'].constantize.unread_count
+                            %small.label.pull-right.bg-red= 13 # menu[key]['model'].constantize.unread_count
           - elsif menu[key]['model'] && can?(menu[key]['model'].constantize).index? # tree sidebar links
             %li.sidebar-item.treeview{ class: ('active' if controller_name.eql?(menu[key]['name'])) }
               = link_to menu[key]['url_path'], class: "sidebar-link collapsible-header #{ 'current' if menu[key]['current'].map { |x| x.include?(controller_name) }.include?(true)}", 'data-no-turbolink': true do

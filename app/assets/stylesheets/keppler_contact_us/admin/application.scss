@@ -1,7 +1,7 @@
 // = require animate-css
 // = require jquery.minicolors
 // = require noty
-// = require bootstrap-wysihtml5
+//  require bootstrap-wysihtml5
 // = require_self
 
 // Utils
@@ -12,7 +12,7 @@
 @import 'utils/base';
 
 // Wysihtml5 editor
-@import 'bootstrap-wysihtml5/bootstrap3-wysihtml5';
+@import 'wysihtml5/bootstrap3-wysihtml5';
 // @import 'wysihtml5/*';
 
 // Bootstrap tagsinput

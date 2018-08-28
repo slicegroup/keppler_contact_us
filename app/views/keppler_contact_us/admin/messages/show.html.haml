@@ -10,7 +10,7 @@
           .col-md-9
             .box.slice-box
               .box-header.with-border
-                %h3.box-title= t("keppler.modules.#{controller_path.underscore}")
+                %h3.box-title= t("keppler-contact-us.modules.#{controller_path.underscore}")
                 .box-tools.pull-right
                   - if can?(KepplerContactUs::Message).update?
                     = link_to edit_admin_contact_us_message_path(@object), class: 'btn btn-box-tool', 'data-toggle': 'tooltip', 'data-original-title': t('keppler.actions.edit') do
@@ -25,8 +25,10 @@
                 .mailbox-read-info
                   %h3= @object.subject
                   %h5
-                    #{t('activerecord.attributes.from_email')}: #{@object.name}
-                    %small.label.label-default #{@object.from_email}
+                    #{t('activerecord.attributes.from_email')}:
+                    %small.label.label-default
+                      #{@object.name}
+                      (#{@object.from_email})
                   %h5
                     #{t('activerecord.attributes.to_emails')}: 
                     - @object.to_emails.split(',').each do |to_email|

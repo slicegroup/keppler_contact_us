@@ -12,7 +12,7 @@
       .col-lg-12
         .box.slice-box
           .box-header.with-border
-            %h3.box-title= t("keppler.modules.#{controller_path.underscore}")
+            %h3.box-title= t("keppler-contact-us.modules.#{controller_path.underscore}")
             .box-tools.pull-right
               - if can?(module_name).update?
                 = link_to edit_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn btn-box-tool", 'data-toggle': 'tooltip', 'data-original-title': "#{t('keppler.actions.edit') }" do
@@ -48,7 +48,7 @@
       .col-lg-7
         .box.slice-box
           .box-header.with-border
-            %h3.box-title= t("keppler.modules.#{controller_path.underscore}")
+            %h3.box-title= t("keppler-contact-us.modules.#{controller_path.underscore}")
             .box-tools.pull-right
               = link_to edit_admin_<%= namespaced_path.split('_').drop(1).join('_') %>_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: "btn btn-box-tool", 'data-toggle': 'tooltip', 'data-original-title': "#{t('keppler.actions.edit') }" do
                 %i.icon-pencil

@@ -5,6 +5,12 @@ es:
       keppler-contact-us-submenu:
         messages: Mensajes
       messages: Mensajes
+      messages-submenu:
+        messages: Bandeja de entrada
+        sent: Enviados
+        read: Leídos
+        unread: No leídos
+        favorites: Favoritos
     models:
       singularize:
         message: mensaje
@@ -37,6 +43,8 @@ es:
           has_one: "No se puede borrar el registro porque un registro dependiente %{record} existe"
           has_many: "No se puede borrar el registro porque registros dependientes %{record} existen"
   keppler-contact-us:
+    modules:
+      keppler_contact_us/admin/messages: 'Mensajes'
     index:
       folders: Carpetas
       sent: Enviados

@@ -11,5 +11,5 @@
         %li{ class: ('active' if controller_path.include?(ctrl[:name])) }
           = link_to "/admin/contact_us/#{ctrl[:name]}" do
             %i{ class: "icon-#{ctrl[:icon]}"}
-            = t("keppler.modules.keppler_contact_us/admin/#{ctrl[:name]}")
+            = t("keppler-contact-us.modules.keppler_contact_us/admin/#{ctrl[:name]}")
             %span.label.pull-right{ class: (controller_path.include?(ctrl[:name]) ? 'label-keppler' : 'label-default') }= module_name.unread_count

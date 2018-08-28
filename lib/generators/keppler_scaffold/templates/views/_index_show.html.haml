@@ -7,7 +7,7 @@
     %a.close-index-show.pull-right
       %i.icon-close
   %h3.control-sidebar-heading
-    = t("keppler.modules.#{controller_path.underscore}")
+    = t("keppler-contact-us.modules.#{controller_path.underscore}")
   %ul.timeline
     - @<%= singular_table_name %>.as_json(only: <%= attributes.map{|attr| attr.name} %>).each do |attribute, value|
       -unless attribute.eql?('position') || attribute.eql?('deleted_at')

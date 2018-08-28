@@ -51,6 +51,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (9.0.0)
+    bootstrap-wysihtml5-rails (0.3.3.8)
+      railties (>= 3.0)
     builder (3.2.3)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
@@ -127,8 +129,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-wysihtml5-rails
   keppler_contact_us!
   pg
 
 BUNDLED WITH
-   1.16.2
+   1.16.4

@@ -22,7 +22,7 @@
                 .row
                   .box.slice-box
                     .box-header.with-border
-                      %h3.box-title= t("keppler.modules.#{action_name.underscore}") # + "(#{controller_path})"
+                      %h3.box-title= t("keppler-contact-us.modules.#{action_name.underscore}") # + "(#{controller_path})"
                       .box-tools.pull-right
                         %a.btn.btn-box-tool{'data-widget' => 'collapse', type: 'button' }
                           %i.fa.fa-minus
@@ -33,15 +33,15 @@
                       .form-group
                         = f.input :to_emails, label: t('keppler-contact-us.attributes.to_emails'), placeholder: t('keppler-contact-us.actions.insert_email'), as: :string, input_html: { 'data-role': 'tagsinput', value: (object&.from_email if action_name.eql?('reply')) }, class: 'form-control bootstrap-tagsinput'
                       .form-group
-                        = f.input :subject, label: t('keppler-contact-us.attributes.subject'), placeholder: t('keppler-contact-us.actions.insert_subject'), value: (object&.subject) 
+                        = f.input :subject, label: t('keppler-contact-us.attributes.subject'), placeholder: t('keppler-contact-us.actions.insert_subject'), value: (object&.subject)
                       .form-group
-                        = f.input :content, as: :wysihtml5, input_html: { value: (action_name.eql?('reply') ? '' : object&.content) }
+                        = f.input :content, input_html: { class: 'wysihtml5', value: (action_name.eql?('reply') ? '' : object&.content) }
                         = f.input :read, input_html: { value: true }, as: :hidden
                       .form-group
                         = f.submit t('keppler-contact-us.actions.send')
 
 = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js'
-= javascript_include_tag '/assets/keppler_contact_us/admin/bootstrap-tagsinput.min.js'
+= javascript_include_tag '/assets/keppler_contact_us/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js'
 
 -# :javascript
   $('.bootstrap-tagsinput').tagsinput({

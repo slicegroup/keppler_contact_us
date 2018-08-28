@@ -4,7 +4,7 @@
       .listing.col-lg-12.col-xs-12
         %section.content-header.index-header
           %h1{ style: 'display: inline-block' }
-            = t("keppler.modules.#{controller_path.underscore}")
+            = t("keppler-contact-us.modules.#{controller_path.underscore}")
           .badge.objects-counter{ style: 'margin-bottom: 0 10px' }
             = entries(@total, @objects)
           .toolbar
@@ -36,7 +36,7 @@
             %li
               %a{ href: '#' }
                 %i.icon-directions
-                = t("keppler.modules.#{action_name.underscore}")
+                = t("keppler-contact-us.modules.#{action_name.underscore}")
 
         .box.slice-box
           .box-body.no-padding
