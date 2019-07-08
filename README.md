@@ -19,7 +19,7 @@ Es un Engine que proporciona un formulario de contacto básico
 Añadir la siguiente línea a su Gemfile
 
 ```ruby
-gem 'keppler_contact_us', git: "https://github.com/SliceDevelopers/keppler_contact_us.git", tag: '1.0.0'
+gem 'keppler_contact_us', git: "https://github.com/slicegroup/keppler_contact_us.git", tag: '1.0.0'
 gem "recaptcha", require: "recaptcha/rails"
 ```
 
